@@ -1,22 +1,12 @@
 """ Diagonal difference """
 
-n = int(raw_input());
+n = int(raw_input())
 numbers = []
+sum1 = 0
+j = n - 1
 for i in range(n):
-	numbers.append(raw_input().split())
+	numbers.append(map(int, raw_input().split()))
+	sum1 += numbers[i][i] - numbers[i][j]
+	j -= 1
 
-flag = 1
-difference = 0
-change = 0
-for j in range(2):
-	for i in range(n):
-		difference += flag * (
-			int(numbers[i][change + (flag * i)])
-		)
-	flag = -1
-	change = n - 1
-
-if difference < 0:
-	difference *= -1
-
-print difference
+print abs(sum1 - sum2)		
