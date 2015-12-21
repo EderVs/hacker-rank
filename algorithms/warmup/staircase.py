@@ -1,6 +1,6 @@
 """ Staircase """
 
-number = int(raw_input())
+number = input()
 
 for i in range(1, number + 1):
-	print ' ' * (number - i) + '#' * i
+	print ' ' * (number - i) + '#' * i1
