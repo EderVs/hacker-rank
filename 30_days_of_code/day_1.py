@@ -1,3 +1,5 @@
+""" Day 1: Data Types! """
+
 print "Primitive : double"
 print "Primitive : char"
 print "Primitive : boolean"
