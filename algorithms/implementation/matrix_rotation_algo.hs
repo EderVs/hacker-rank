@@ -40,12 +40,16 @@ putFirsts _ _ 0 = []
 putFirsts [] ys _ = ys
 putFirsts (x:xs) (y:ys) n = (x:y):putFirsts xs ys (n-1)
 
+lowerThan :: [a] -> Int -> Bool
+lowerThan [] n = True
+lowerThan xs 0 = False
+lowerThan (_:xs) n = lowerThan xs (n-1)
+
 coverToOneDimension :: [[String]] -> [String]
-coverToOneDimension matrix 
-	| length matrix == 1 = head matrix
-	| otherwise = head' matrix ++ getLasts core ++ reverse (last' matrix) ++ firsts where
-		core = init' (tail' matrix)
-		firsts = if length (head' matrix) == 1 then [] else getFirsts (reverse core)
+coverToOneDimension [x] = x
+coverToOneDimension matrix = head' matrix ++ getLasts core ++ reverse (last' matrix) ++ firsts where
+	core = init' (tail' matrix)
+	firsts = if lowerThan (head' matrix) 1 then [] else getFirsts (reverse core)
 
 getMatrixCore :: [[String]] -> [[String]]
 getMatrixCore matrix = core where
@@ -62,8 +66,9 @@ rotateNOneDimension text n = rotateOneDimension (rotateNOneDimension text (n-1))
 
 putCover :: [String] -> [[String]] -> Int -> Int -> [[String]]
 putCover cover [] n m = [take n cover] ++ putFirsts (reverse last_m) (putLasts (drop n cover) [[]] m) m ++ bottom where
-	last_m = if n == 1 then [] else drop ((length cover)-m) cover
-	bottom = if (length cover) - n == 0 then [] else [reverse (take n (drop (n+m) cover))]
+	last_m = if n == 1 then [] else drop ((cover_length)-m) cover
+	bottom = if (cover_length) - n == 0 then [] else [reverse (take n (drop (n+m) cover))]
+	cover_length = length cover
 putCover cover core n m = [take n cover] ++ putFirsts (reverse last_m) (putLasts (drop n cover) core m) m ++ [reverse (take n (drop (n+m) cover))] where
 	last_m = drop ((length cover)-m) cover
 
