@@ -13,7 +13,7 @@ cabal.sandbox.config
 cabal.config
 
 algorithms/dynamic_programming/*
-
+functional_programming/recursion/prefix_compression.hs
 
 ###Python###
 
