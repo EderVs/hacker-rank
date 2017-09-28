@@ -25,4 +25,4 @@ main :: IO()
 main = do
     x <- getLine
     n <- getLine
-    putStrLn (show (sumsOfPowers (read x :: Int) (read n :: Int)))
+    putStrLn (show $ sumsOfPowers (read x :: Int) (read n :: Int))
