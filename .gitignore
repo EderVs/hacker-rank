@@ -75,3 +75,6 @@ target/
 #Vim
 *.swp
 *.swo
+
+#C++
+*.out
